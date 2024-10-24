@@ -11,38 +11,44 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 import time
 def put_comment(request):
+    c=0
     l=["esraa_kamel84","amira_alaa78","aya_abdelrhman789"]
     for user in l :
-        chrome_options = Options()
-        chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-        chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-        chrome_options.add_experimental_option("prefs", {
-            "profile.default_content_setting_values.notifications": 2
-        })
-        # Open the login page
-        chrome_service=Service()
-        driver =webdriver.Chrome(options=chrome_options,service=chrome_service)
-        driver.get("https://www.instagram.com/?hl=en")
-        time.sleep(5)
-        usr=driver.find_element(By.NAME,"username")
-        usr.send_keys("aya_abdelrhman789")
-        time.sleep(2)
-        password=driver.find_element(By.NAME,"password")
-        password.send_keys("0504800757")
-        time.sleep(2)
-        sign_button=driver.find_element(By.XPATH,"//button[@type='submit']")
-        sign_button.click()
-        time.sleep(15)
-        driver.get("https://www.instagram.com/p/DBYRDw9o9uL/")
-        time.sleep(5)
-        comment_button=driver.find_element(By.XPATH, "//textarea[@placeholder='Add a comment…']")
-        time.sleep(4)
-        comment_button.click()
-        time.sleep(4)
-        comment_area=driver.find_element(By.XPATH,"//textarea[@placeholder='Add a comment…']")
-        comment_area.send_keys("beauty")
-        time.sleep(2)
-        comment_area.send_keys(Keys.ENTER)
-        print("...............................")
-        time.sleep(2)
+        try:
+            chrome_options = Options()
+            chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+            chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            chrome_options.add_experimental_option("prefs", {
+                "profile.default_content_setting_values.notifications": 2
+            })
+            # Open the login page
+            chrome_service=Service()
+            driver =webdriver.Chrome(options=chrome_options,service=chrome_service)
+            driver.get("https://www.instagram.com/?hl=en")
+            time.sleep(5)
+            usr=driver.find_element(By.NAME,"username")
+            usr.send_keys(user)
+            time.sleep(2)
+            password=driver.find_element(By.NAME,"password")
+            password.send_keys("0504800757")
+            time.sleep(2)
+            sign_button=driver.find_element(By.XPATH,"//button[@type='submit']")
+            sign_button.click()
+            time.sleep(15)
+            driver.get("https://www.instagram.com/p/DBYRDw9o9uL/")
+            time.sleep(5)
+            comment_button=driver.find_element(By.XPATH, "//textarea[@placeholder='Add a comment…']")
+            time.sleep(4)
+            comment_button.click()
+            time.sleep(4)
+            comment_area=driver.find_element(By.XPATH,"//textarea[@placeholder='Add a comment…']")
+            comment_area.send_keys("beauty")
+            time.sleep(2)
+            comment_area.send_keys(Keys.ENTER)
+            print("...............................")
+            time.sleep(2)
+            c+=1
+        except :
+            pass
+    return JsonResponse({"comments done is ":c})
 # Create your views here.
