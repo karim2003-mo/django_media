@@ -49,8 +49,8 @@ def put_comment(request):
             time.sleep(2)
             c+=1
             driver.quit()
-        except :
-            pass
+        except Exception as e:
+            return JsonResponse(e)
     return JsonResponse({"comments done is ":c})
 def test_func(request) :
     return HttpResponse("your app is correctly operated")
