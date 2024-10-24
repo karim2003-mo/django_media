@@ -34,7 +34,7 @@ def put_comment(request):
             time.sleep(2)
             sign_button=driver.find_element(By.XPATH,"//button[@type='submit']")
             sign_button.click()
-            time.sleep(10)
+            time.sleep(12)
             driver.get("https://www.instagram.com/p/DBYRDw9o9uL/")
             time.sleep(2)
             comment_button=driver.find_element(By.XPATH, "//textarea[@placeholder='Add a comment…']")
