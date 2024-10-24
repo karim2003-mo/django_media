@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from selenium import webdriver
@@ -52,4 +52,6 @@ def put_comment(request):
         except :
             pass
     return JsonResponse({"comments done is ":c})
+def test_func(request) :
+    return HttpResponse("your app is correctly operated")
 # Create your views here.
