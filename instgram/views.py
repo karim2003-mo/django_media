@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.service import Service
 import time
 def put_comment(request):
     c=0
-    l=["esraa_kamel84","amira_alaa78","aya_abdelrhman789"]
+    l=["esraa_kamel84","aya_abdelrhman789"]
     for user in l :
         try:
             chrome_options = Options()
@@ -22,6 +22,11 @@ def put_comment(request):
                 "profile.default_content_setting_values.notifications": 2
             })
             # Open the login page
+            chrome_options = Options()
+            chrome_options.add_argument("--disable-gpu")  # Disable GPU usage
+            chrome_options.add_argument("--headless")  # Run in headless mode
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_service=Service()
             driver =webdriver.Chrome(options=chrome_options,service=chrome_service)
             driver.get("https://www.instagram.com/?hl=en")
@@ -34,7 +39,7 @@ def put_comment(request):
             time.sleep(2)
             sign_button=driver.find_element(By.XPATH,"//button[@type='submit']")
             sign_button.click()
-            time.sleep(12)
+            time.sleep(17)
             driver.get("https://www.instagram.com/p/DBYRDw9o9uL/")
             time.sleep(2)
             comment_button=driver.find_element(By.XPATH, "//textarea[@placeholder='Add a comment…']")
@@ -42,15 +47,15 @@ def put_comment(request):
             comment_button.click()
             time.sleep(2)
             comment_area=driver.find_element(By.XPATH,"//textarea[@placeholder='Add a comment…']")
-            comment_area.send_keys("beauty")
+            comment_area.send_keys("elegant")
             time.sleep(2)
             comment_area.send_keys(Keys.ENTER)
             print("...............................")
-            time.sleep(2)
+            time.sleep(20)
             c+=1
             driver.quit()
         except Exception as e:
-            return JsonResponse(e)
+            print("error")
     return JsonResponse({"comments done is ":c})
 def test_func(request) :
     return HttpResponse("your app is correctly operated")
