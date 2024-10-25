@@ -9,11 +9,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import time
 def put_comment(request,path):
     browser=None
     if path=='remote' :
-        browser="/usr/bin/chromedriver"
+        browser='/root/.cache/selenium/chromedriver/linux64/130.0.6723.69/chromedriver'
     c=0
     l=["esraa_kamel84","aya_abdelrhman789"]
     for user in l :
@@ -34,7 +36,9 @@ def put_comment(request,path):
             driver =webdriver.Chrome(options=chrome_options,service=chrome_service)
             driver.get("https://www.instagram.com/?hl=en")
             time.sleep(2)
-            usr=driver.find_element(By.NAME,"username")
+            usr=WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "username"))
+    )
             usr.send_keys(user)
             time.sleep(2)
             password=driver.find_element(By.NAME,"password")
@@ -43,7 +47,7 @@ def put_comment(request,path):
             sign_button=driver.find_element(By.XPATH,"//button[@type='submit']")
             sign_button.click()
             time.sleep(17)
-            driver.get("https://www.instagram.com/p/DBYRDw9o9uL/")
+            driver.get("https://www.instagram.com/p/Cgpyh_fNuEkNdyyG4-rO6Qf-CxuDv1vGaqremw0/")
             time.sleep(2)
             comment_button=driver.find_element(By.XPATH, "//textarea[@placeholder='Add a comment…']")
             time.sleep(2)
