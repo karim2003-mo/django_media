@@ -10,7 +10,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 import time
-def put_comment(request):
+def put_comment(request,path):
+    browser=None
+    if path=='remote' :
+        browser="/usr/bin/chromedriver"
     c=0
     l=["esraa_kamel84","aya_abdelrhman789"]
     for user in l :
@@ -27,7 +30,7 @@ def put_comment(request):
             chrome_options.add_argument("--headless")  # Run in headless mode
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
-            chrome_service=Service()
+            chrome_service=Service(browser)
             driver =webdriver.Chrome(options=chrome_options,service=chrome_service)
             driver.get("https://www.instagram.com/?hl=en")
             time.sleep(2)
