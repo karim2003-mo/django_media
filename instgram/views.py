@@ -8,14 +8,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import time
 def put_comment(request,path):
     browser=None
-    if path=='remote' :
-        browser='/root/.cache/selenium/chromedriver/linux64/130.0.6723.69/chromedriver'
     c=0
     l=["esraa_kamel84","aya_abdelrhman789"]
     for user in l :
@@ -32,8 +29,10 @@ def put_comment(request,path):
             chrome_options.add_argument("--headless")  # Run in headless mode
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
-            chrome_service=Service(browser)
-            driver =webdriver.Chrome(options=chrome_options,service=chrome_service)
+            driver =webdriver.Chrome(options=chrome_options)
+            if path=='remote' :
+                remote_driver_url="http://68.221.89.0:8080/wd/hub"
+                driver= webdriver.Remote(command_executor=remote_driver_url, options=chrome_options)
             driver.get("https://www.instagram.com/?hl=en")
             time.sleep(2)
             usr=WebDriverWait(driver, 10).until(
