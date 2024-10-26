@@ -52,7 +52,7 @@ def put_comment(request):
             c+=1
             driver.quit()
         except Exception as e:
-            error=e
+            error=str(e)
     return JsonResponse({"comments done is ":c,
                         "error":error})
 def test_func(request) :
