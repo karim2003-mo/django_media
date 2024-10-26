@@ -16,7 +16,6 @@ import time
 def put_comment(request):
     c=0
     l=["esraa_kamel84","aya_abdelrhman789"]
-    error=""
     for user in l :
         try:
             chrome_options = Options()
