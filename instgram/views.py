@@ -16,6 +16,7 @@ import time
 def put_comment(request):
     c=0
     l=["esraa_kamel84","aya_abdelrhman789"]
+    error=""
     for user in l :
         try:
             chrome_options = Options()
@@ -52,8 +53,9 @@ def put_comment(request):
             c+=1
             driver.quit()
         except Exception as e:
-            pass
-    return JsonResponse({"comments done is ":c})
+            error=e
+    return JsonResponse({"comments done is ":c,
+                        "error":error})
 def test_func(request) :
     return HttpResponse("your app is correctly operated")
 # Create your views here.
