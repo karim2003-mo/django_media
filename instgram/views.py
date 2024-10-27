@@ -16,7 +16,8 @@ def put_comment(request):
     browser=None
     c=0
     error="No Errors Founded"
-    user=Users.objects.get(id=1)
+    user=Users.objects.get()
+    comment=Comments.objects.get()
     try:
             chrome_options = Options()
             chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
@@ -51,7 +52,7 @@ def put_comment(request):
             comment_button.click()
             time.sleep(2)
             comment_area=driver.find_element(By.XPATH,"//textarea[@placeholder='Add a comment…']")
-            comment_area.send_keys("elegant")
+            comment_area.send_keys(f"{comment.comment}")
             time.sleep(2)
             comment_area.send_keys(Keys.ENTER)
             print("...............................")

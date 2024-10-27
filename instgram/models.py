@@ -4,4 +4,8 @@ class Users(models.Model) :
     password=models.CharField(max_length=200)
     def __str__(self) -> str:
         return self.username
+class Comments(models.Model) :
+    comment=models.TextField()
+    def __str__(self) -> str:
+        return self.comment
 # Create your models here.
