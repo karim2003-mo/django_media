@@ -6,6 +6,7 @@ class Users(models.Model) :
         return self.username
 class Comments(models.Model) :
     name=models.CharField(default="comments")
+    link=models.TextField(default="")
     comment=models.JSONField(default={"comments" :[]})
     def __str__(self) -> str:
         return self.name

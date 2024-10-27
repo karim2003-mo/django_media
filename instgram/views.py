@@ -17,8 +17,9 @@ def put_comment(request):
     l=[]
     error="No Errors Founded"
     users=Users.objects.all()
-    comment=Comments.objects.get(name="comments").comment["comments"]
+    comment=Comments.objects.get(name="comments")
     op=Operator.objects.get()
+    link=comment.link
     if op.operator :
         for user in users :
             try:
@@ -48,14 +49,14 @@ def put_comment(request):
                 sign_button=driver.find_element(By.XPATH,"//button[@type='submit']")
                 driver.execute_script("arguments[0].click();", sign_button)
                 time.sleep(14)
-                driver.get("https://www.instagram.com/p/BL7-8sFhwT4/?utm_source=ig_web_copy_link")
+                driver.get(f"{link}")
                 time.sleep(2)
                 comment_button=driver.find_element(By.XPATH, "//textarea[@placeholder='Add a comment…']")
                 time.sleep(2)
                 comment_button.click()
                 time.sleep(2)
                 comment_area=driver.find_element(By.XPATH,"//textarea[@placeholder='Add a comment…']")
-                comment_area.send_keys(f"{comment[list(users).index(user)]}")
+                comment_area.send_keys(f"{comment["comments"][list(users).index(user)]}")
                 time.sleep(2)
                 comment_area.send_keys(Keys.ENTER)
                 print("...............................")
@@ -77,9 +78,11 @@ def delete(request):
 def add_comment(request):
     if request.method=='POST':
         data=json.load(request.body)
+        link=data["link"]
         comments=list(data['comments'])
         c=Comments.objects.get()
         c.comment['comments']=comments
+        c.link=link
         c.save()
 @csrf_exempt
 def add_account(request):
