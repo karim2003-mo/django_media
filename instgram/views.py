@@ -84,6 +84,8 @@ def add_comment(request):
         c.comment['comments']=comments
         c.link=link
         c.save()
+        return JsonResponse({"status":"mission has been done"})
+    return JsonResponse({"status":"mission failed"})
 @csrf_exempt
 def add_account(request):
     if request.method=='POST':
@@ -95,6 +97,8 @@ def add_account(request):
             password=map['password']
             c=Users.objects.create(username=username,password=password)
         c.save()
+        return JsonResponse({"status":"mission has been done"})
+    return JsonResponse({"status":"mission failed"})
 @csrf_exempt
 def modify_account(request):
     if request.method=='POST':
@@ -104,4 +108,6 @@ def modify_account(request):
         c=Users.objects.get(username=username)
         c.password=password
         c.save()
+        return JsonResponse({"status":"mission has been done"})
+    return JsonResponse({"status":"mission failed"})
 # Create your views here.
