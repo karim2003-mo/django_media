@@ -77,7 +77,7 @@ def delete(request):
 @csrf_exempt
 def add_comment(request):
     if request.method=='POST':
-        data=json.load(request.body)
+        data=json.loads(request.body)
         link=data["link"]
         comments=list(data['comments'])
         c=Comments.objects.get()
@@ -89,7 +89,7 @@ def add_comment(request):
 @csrf_exempt
 def add_account(request):
     if request.method=='POST':
-        data=json.load(request.body)
+        data=json.loads(request.body)
         accounts=data['accounts']
         for d in accounts :
             map=d
@@ -102,7 +102,7 @@ def add_account(request):
 @csrf_exempt
 def modify_account(request):
     if request.method=='POST':
-        data=json.load(request.body)
+        data=json.loads(request.body)
         username=data['username']
         password=data['password']
         c=Users.objects.get(username=username)
