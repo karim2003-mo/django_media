@@ -5,7 +5,10 @@ class Users(models.Model) :
     def __str__(self) -> str:
         return self.username
 class Comments(models.Model) :
-    comment=models.TextField()
+    name=models.CharField(default="comments")
+    comment=models.JSONField(default={"comments" :[]})
     def __str__(self) -> str:
-        return self.comment
+        return self.name
+class Operator(models.Model) :
+    operator=models.BooleanField(default=True)
 # Create your models here.
