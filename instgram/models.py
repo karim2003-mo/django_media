@@ -12,4 +12,7 @@ class Comments(models.Model) :
         return self.name
 class Operator(models.Model) :
     operator=models.BooleanField(default=True)
+class Post(models.Model) :
+    image=models.CharField(max_length=250)
+    caption=models.TextField()
 # Create your models here.
