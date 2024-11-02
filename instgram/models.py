@@ -6,9 +6,9 @@ class Users(models.Model) :
     man=models.BooleanField(default=False)
     women=models.BooleanField(default=True)
     owener=models.CharField(max_length=50,default="karim")
-    operating_system=models.CharField(max_length=25,default="widows")
+    operating_system=models.CharField(max_length=25,default="windows")
     account_problem=models.BooleanField(default=False)
-    creation_date = models.DateField(default=date(2024, 10, 30))
+    creation_date = models.DateField(default=date.today)
     def __str__(self) -> str:
         return self.username
 class Comments(models.Model) :
@@ -22,4 +22,9 @@ class Operator(models.Model) :
 class Post(models.Model) :
     image=models.CharField(max_length=250)
     caption=models.TextField()
+class Gmail(models.Model) :
+    gmail=models.CharField(max_length=250)
+    password=models.CharField(max_length=30)
+    def __str__(self) -> str:
+        return self.gmail
 # Create your models here.
