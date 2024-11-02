@@ -141,19 +141,19 @@ def posts(request) :
     link=comment.link
     c=0
     if op.operator== True :
+        chrome_options = Options()
+        # Open the login page
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument(r"--user-data-dir=C:\Users\Admin\AppData\Local\Google\Chrome\User Data")
+        chrome_options.add_argument(r"--profile-directory=Profile 3")
+        # chrome_options.add_argument("--disable-gpu")  # Optional for performance
+        # chrome_options.add_argument("--headless") 
+        driver =webdriver.Chrome(options=chrome_options)
+        driver.get("https://www.instagram.com/?hl=en")
+        time.sleep(3)
         for user in users :
             if user.username=="nehadfayed22":
                 continue
-            chrome_options = Options()
-            # Open the login page
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument(r"--user-data-dir=C:\Users\Admin\AppData\Local\Google\Chrome\User Data")
-            chrome_options.add_argument(r"--profile-directory=Profile 3")
-            # chrome_options.add_argument("--disable-gpu")  # Optional for performance
-            # chrome_options.add_argument("--headless") 
-            driver =webdriver.Chrome(options=chrome_options)
-            driver.get("https://www.instagram.com/?hl=en")
-            time.sleep(3)
             try :
                 settings=driver.find_element(By.XPATH, "//div//*[name()='svg' and @aria-label='Settings']")
                 settings.click()
@@ -213,9 +213,9 @@ def posts(request) :
                 # Click "Next" button
                 choose_image = driver.find_element(By.XPATH, "//button[normalize-space()='Select from computer']")
                 choose_image.click()
-                time.sleep(1)
+                time.sleep(2)
                 pyautogui.typewrite(image_path)
-                time.sleep(1)
+                time.sleep(2)
                 pyautogui.press('enter')
                 time.sleep(3)
                 next_button = driver.find_element(By.XPATH, "//div[contains(text(),'Next')]")
@@ -246,8 +246,20 @@ def posts(request) :
                 c+=1
             except Exception as e:
                 error=str(e)
-            driver.quit()
     return JsonResponse({"posts done is ":c,"error":error})
+def account_problem(request) :
+    li=[]
+    users=Users.objects.all()
+    for u in users :
+        if u.account_problem==True :
+            mp={
+                "username" : u.username,
+                "password" :u.password,
+            }
+            li.append(mp)
+    return JsonResponse({
+        "result" :li
+    })
 # //div[@class='x6s0dn4 x78zum5 xdt5ytf xl56j7k']//*[name()='svg']  XPATH
 # line[fill='none'][stroke='currentColor'][stroke-linecap='round'][stroke-linejoin='round'][stroke-width='3']  css selector
 # Create your views here.
