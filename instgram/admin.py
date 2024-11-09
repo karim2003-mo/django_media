@@ -5,4 +5,5 @@ admin.site.register(Comments)
 admin.site.register(Operator)
 admin.site.register(Post)
 admin.site.register(Gmail)
+admin.site.register(FacebookAccount)
 # Register your models here.
