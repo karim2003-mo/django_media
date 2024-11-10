@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import requests
+# import requests
 from .models import *
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -14,8 +14,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import pyperclip
 import time
-import pyautogui
-from bs4 import BeautifulSoup
+# import pyautogui
+# from bs4 import BeautifulSoup
 class SocialInstgram :
     chrome_options = Options()
     users=Users.objects.all()
@@ -226,12 +226,13 @@ class SocialInstgram :
                         choose_image = driver.find_element(By.XPATH, "//button[text()='Select From Computer']")
                         choose_image.click()
                     except :
-                        pyautogui.click(clicks=1,x=590,y=633)
+                        pass
+                        # pyautogui.click(clicks=1,x=590,y=633)
                     time.sleep(3)
                     try :
-                        pyautogui.typewrite(image_path)
+                        # pyautogui.typewrite(image_path)
                         time.sleep(1)
-                        pyautogui.press('enter')
+                        # pyautogui.press('enter')
                         time.sleep(3)
                         next_button = driver.find_element(By.XPATH, "//div[contains(text(),'Next')]")
                         next_button.click()
@@ -253,7 +254,8 @@ class SocialInstgram :
                         # //div[@class='x160vmok x10l6tqk  x1vjfegm']//div[@class='x6s0dn4 x78zum5 xdt5ytf xl56j7k']//*[name()='svg']
                         close_btn.click()
                     except :
-                        pyautogui.click()
+                        # pyautogui.click()
+                        pass
                     time.sleep(1)
                     self.logout(driver=driver)
                     time.sleep(5)
@@ -288,12 +290,12 @@ class SocialInstgram :
             self.login(driver=driver,user=user)
             self.put_comment()
             self.react()
-    def test_soup(self,request) :
-        page=requests.get("https://www.instagram.com/")
-        cont=page.content
-        soup=BeautifulSoup(cont,"lxml")
-        print(soup)
-        return HttpResponse(soup)
+    # def test_soup(self,request) :
+    #     page=requests.get("https://www.instagram.com/")
+    #     cont=page.content
+    #     soup=BeautifulSoup(cont,"lxml")
+    #     print(soup)
+    #     return HttpResponse(soup)
     # //div[@class='x6s0dn4 x78zum5 xdt5ytf xl56j7k']//*[name()='svg']  XPATH
     # line[fill='none'][stroke='currentColor'][stroke-linecap='round'][stroke-linejoin='round'][stroke-width='3']  css selector
     # Create your views here.
