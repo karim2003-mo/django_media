@@ -12,5 +12,4 @@ urlpatterns = [
     path("modify_account/",social.modify_account,name="modify_account"),
     path("share_post/",social.posts,name="share_post"),
     path("problem/",social.account_problem,name="problem"),
-    path("soup/",social.test_soup,name="soup"),
 ]
