@@ -3,3 +3,5 @@
 .sqlite3
 local_data.json
 clubs
+instgram/views.py
+instgram/urls.py
