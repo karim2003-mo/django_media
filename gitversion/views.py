@@ -5,6 +5,6 @@ def test(request) :
     users = Users.objects.all()
     l=[]
     for user in users :
-        l.append(user)
+        l.append(user.username)
     return JsonResponse({"result":l})
 # Create your views here.
